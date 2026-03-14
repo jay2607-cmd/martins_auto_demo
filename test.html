@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin's Automotive | Next-Gen Auto Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0D0D0D;
+            --card-bg: #161616;
+            --accent: #CEFF00; /* Acid Green / Volt */
+            --text: #FFFFFF;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius: 24px;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+
+        /* NAVIGATION - Floating Blur */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo { font-family: var(--font-heading); font-size: 1.2rem; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO - Typography Focused */
+        .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 100px; }
+        .hero-content { width: 100%; }
+        .hero-title { 
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            line-height: 0.85;
+            letter-spacing: -4px;
+            margin-bottom: 2rem;
+        }
+        .hero-title span { color: var(--accent); display: block; }
+
+        .hero-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn-main {
+            background: var(--accent);
+            color: black;
+            padding: 1.5rem 3rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn-main:hover { transform: scale(1.05) rotate(-2deg); background: white; }
+
+        /* BENTO GRID - Services */
+        .section-tag { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .bento-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        .bento-item:hover { border-color: var(--accent); }
+        
+        .bento-1 { grid-column: span 2; background: url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&q=80') center/cover; }
+        .bento-2 { grid-column: span 1; }
+        .bento-3 { grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .bento-4 { grid-column: span 1; background: var(--accent); color: black; }
+        .bento-5 { grid-column: span 2; }
+        .bento-6 { grid-column: span 1; background: #222; }
+
+        .bento-item h3 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .bento-item p { color: var(--text-dim); font-size: 0.9rem; }
+        .bento-4 p { color: rgba(0,0,0,0.7); font-weight: 600; }
+
+        /* NUMBERS SECTION */
+        .metrics { display: flex; gap: 4rem; padding: 6rem 0; border-top: 1px solid var(--border); }
+        .metric-item h2 { font-family: var(--font-heading); font-size: 4rem; color: var(--accent); }
+        .metric-item p { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--text-dim); }
+
+        /* CONTACT FORM - Dark Glass */
+        .contact-section { padding-bottom: 8rem; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .form-group { margin-bottom: 2rem; }
+        label { display: block; font-size: 0.7rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+        input, textarea {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        input:focus { outline: none; border-color: var(--accent); }
+
+        /* FOOTER */
+        footer { padding: 4rem 0; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
+
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6 { grid-column: span 2; height: 300px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-footer { flex-direction: column; align-items: flex-start; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MARTIN'S<span>AUTOCENTRE</span></div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">Philosophy</a>
+            <a href="#contact">Inquiry</a>
+        </div>
+        <div class="logo" style="font-size: 0.8rem;">EST. 2018</div>
+    </nav>
+
+    <main class="container">
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    ENGINEERED <span>RELIABILITY.</span>
+                </h1>
+                <div class="hero-footer">
+                    <p style="max-width: 400px; color: var(--text-dim); font-size: 1.1rem;">
+                        Hamilton’s premium destination for automotive diagnostics, maintenance, and performance repair. 
+                    </p>
+                    <a href="#contact" class="btn-main">Secure Appointment</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="metrics">
+            <div class="metric-item"><h2>5.0</h2><p>Google Rating</p></div>
+            <div class="metric-item"><h2>424</h2><p>Verified Reviews</p></div>
+            <div class="metric-item"><h2>0%</h2><p>Unnecessary Upsells</p></div>
+        </section>
+
+        <section id="services">
+            <span class="section-tag">Capabilities</span>
+            <div class="bento-grid">
+                <div class="bento-item bento-1"></div>
+                <div class="bento-item bento-2">
+                    <h3>Brakes</h3>
+                    <p>High-friction performance & safety testing.</p>
+                </div>
+                <div class="bento-item bento-3">
+                    <h3>Diagnostics</h3>
+                    <p>Digital fault finding with 2026 system standards.</p>
+                    <div style="font-size: 2rem;">⚡</div>
+                </div>
+                <div class="bento-item bento-4">
+                    <h3>Safety First</h3>
+                    <p>Ontario Safety Standards Certificates for vehicle transfers and sales.</p>
+                </div>
+                <div class="bento-item bento-5">
+                    <h3>Full Synthetic Maintenance</h3>
+                    <p>Extended life oil services and fluid analysis to keep your powertrain running at peak efficiency.</p>
+                </div>
+                <div class="bento-item bento-6">
+                    <h3 style="color: var(--accent);">Tires</h3>
+                    <p>Laser balancing and seasonal transitions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="contact-grid">
+                <div>
+                    <span class="section-tag">Direct Line</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 2rem;">LET'S TALK <br><span>PERFORMANCE.</span></h2>
+                    <p style="color: var(--text-dim); margin-bottom: 1rem;">541 Kenilworth Ave N, Hamilton, ON</p>
+                    <p style="font-size: 2rem; color: var(--accent); font-weight: 800;">(905) 923-9064</p>
+                </div>
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Vehicle</label>
+                        <input type="text" placeholder="2024 BMW M4">
+                    </div>
+                    <div class="form-group">
+                        <label>Issue/Service</label>
+                        <textarea rows="2" placeholder="Describe the symptom..."></textarea>
+                    </div>
+                    <button class="btn-main" style="width: 100%;" onclick="alert('Inquiry Sent.')">Send Inquiry</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container">
+        <div style="display: flex; justify-content: space-between;">
+            <p>© 2026 MARTIN'S AUTOMOTIVE CENTRE</p>
+            <p>HAMILTON • GTA • ONTARIO</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-item, .metric-item').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "1s cubic-bezier(0.23, 1, 0.32, 1)";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

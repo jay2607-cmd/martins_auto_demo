@@ -242,6 +242,472 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        /* ===== APPLE-STYLE SCROLL ANIMATIONS ===== */
+        
+        /* Base animation states */
+        .anim-fade-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-fade-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .anim-fade-in {
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-fade-in.in-view {
+            opacity: 1;
+        }
+        
+        .anim-slide-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-left.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .anim-slide-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-right.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .anim-scale-in {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-scale-in.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .anim-blur-in {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-blur-in.in-view {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+        
+        /* Staggered children animations */
+        .anim-stagger > * {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-stagger.in-view > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(4) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(5) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(6) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(7) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
+        .anim-stagger.in-view > *:nth-child(8) { transition-delay: 0.7s; opacity: 1; transform: translateY(0); }
+        
+        /* Text reveal animation - character by character feel */
+        .anim-text-reveal {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-text-reveal.in-view {
+            clip-path: inset(0 0% 0 0);
+        }
+        
+        /* Draw line animation */
+        .anim-draw-line {
+            position: relative;
+        }
+        .anim-draw-line::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-draw-line.in-view::after {
+            width: 100%;
+        }
+        
+        /* Rotate in */
+        .anim-rotate-in {
+            opacity: 0;
+            transform: rotate(-10deg) translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-rotate-in.in-view {
+            opacity: 1;
+            transform: rotate(0) translateY(0);
+        }
+        
+        /* Zoom parallax for images */
+        .anim-zoom-parallax {
+            transform: scale(1.15);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-zoom-parallax.in-view {
+            transform: scale(1);
+        }
+        
+        /* Split text animation */
+        .split-text .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .split-text.in-view .char {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Counter box pop */
+        .anim-pop {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .anim-pop.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Mask reveal */
+        .anim-mask-up {
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-mask-up.in-view {
+            clip-path: inset(0% 0 0 0);
+        }
+        
+        /* Glow pulse on scroll */
+        .anim-glow {
+            transition: box-shadow 0.8s ease, transform 0.8s ease;
+        }
+        .anim-glow.in-view {
+            box-shadow: 0 0 60px rgba(212, 56, 44, 0.3);
+        }
+        
+        /* Card 3D tilt on scroll */
+        .anim-tilt {
+            transform: perspective(1000px) rotateX(10deg);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-tilt.in-view {
+            transform: perspective(1000px) rotateX(0deg);
+            opacity: 1;
+        }
+        
+        /* Section header special animation */
+        .section-header.anim-ready .section-label {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section-header.anim-ready h2 {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+        }
+        .section-header.anim-ready p {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+        .section-header.in-view .section-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .section-header.in-view h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-header.in-view p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Smooth scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s linear;
+        }
+        
+        /* Image reveal with overlay */
+        .img-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-reveal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--primary);
+            z-index: 2;
+            transform: translateX(-101%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-reveal.in-view::before {
+            transform: translateX(101%);
+        }
+        .img-reveal img {
+            transform: scale(1.2);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+        .img-reveal.in-view img {
+            transform: scale(1);
+        }
+
+        /* ===== ENHANCEMENT 1: LIVE STATUS BADGE ===== */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(34, 180, 85, 0.15);
+            border: 1px solid rgba(34, 180, 85, 0.3);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-left: 1rem;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+        }
+        .status-badge.open {
+            background: rgba(34, 180, 85, 0.15);
+            border-color: rgba(34, 180, 85, 0.3);
+            color: #22B455;
+        }
+        .status-badge.closed {
+            background: rgba(212, 56, 44, 0.15);
+            border-color: rgba(212, 56, 44, 0.3);
+            color: var(--primary-light);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        .status-badge.open .status-dot { background: #22B455; }
+        .status-badge.closed .status-dot { background: var(--primary); }
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .nav-status {
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .status-badge { display: none; }
+        }
+
+        /* ===== ENHANCEMENT 2: ANIMATED COUNTERS ===== */
+        .trust-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--white);
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+        .trust-item:hover .trust-number {
+            transform: scale(1.1);
+        }
+        .counter-animated {
+            display: inline-block;
+        }
+
+        /* ===== ENHANCEMENT 3: BEFORE/AFTER SLIDER ===== */
+        .before-after {
+            padding: 7rem 0;
+            background: var(--light);
+        }
+        .ba-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .ba-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: ew-resize;
+            box-shadow: var(--shadow-lg);
+        }
+        .ba-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .ba-before {
+            clip-path: inset(0 50% 0 0);
+            z-index: 2;
+        }
+        .ba-after {
+            z-index: 1;
+        }
+        .ba-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--white);
+            z-index: 10;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .ba-handle::before,
+        .ba-handle::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .ba-handle::before {
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231A1A1A' stroke-width='2'%3E%3Cpath d='M18 8L22 12L18 16'/%3E%3Cpath d='M6 8L2 12L6 16'/%3E%3C/svg%3E") center/20px no-repeat;
+        }
+        .ba-handle::after { display: none; }
+        .ba-label {
+            position: absolute;
+            bottom: 1rem;
+            padding: 0.4rem 1rem;
+            background: rgba(26,26,26,0.85);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            z-index: 5;
+        }
+        .ba-label.before { left: 1rem; }
+        .ba-label.after { right: 1rem; }
+        .ba-info {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .ba-info h4 { margin-bottom: 0.25rem; color: var(--dark); }
+        .ba-info p { font-size: 0.9rem; color: var(--text-dark-muted); margin: 0; }
+        @media (max-width: 768px) {
+            .ba-container { grid-template-columns: 1fr; }
+        }
+
+        /* ===== ENHANCEMENT 4: FLOATING MOBILE CTA ===== */
+        .floating-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(26,26,26,0.98) 0%, rgba(26,26,26,0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .floating-cta.visible {
+            transform: translateY(0);
+        }
+        .floating-cta-inner {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .floating-cta .btn {
+            flex: 1;
+            padding: 1rem;
+            font-size: 0.85rem;
+            justify-content: center;
+        }
+        .floating-cta .btn-call {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        .floating-cta .btn-quote {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+        }
+        @media (max-width: 768px) {
+            .floating-cta { display: block; }
+            .footer { padding-bottom: 6rem; }
+        }
+
+        /* ===== ENHANCEMENT 5: PARALLAX EFFECTS ===== */
+        .parallax-bg {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-bg {
+            transform: translateZ(0);
+        }
+        .about-img, .why-img {
+            transition: transform 0.5s ease-out;
+        }
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -276,6 +742,9 @@
 </head>
 <body>
 
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -292,7 +761,13 @@
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Get a Quote</a>
+        <div class="nav-status">
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot"></span>
+                <span id="statusText">Open Now</span>
+            </div>
+            <a href="#contact" class="nav-cta">Get a Quote</a>
+        </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
@@ -312,17 +787,17 @@
         </div>
         <div class="hero-trust">
             <div class="trust-item">
-                <span class="trust-number">424+</span>
+                <span class="trust-number" data-target="424" data-suffix="+">0</span>
                 <span class="trust-label">Google Reviews</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
-                <span class="trust-number">5.0★</span>
+                <span class="trust-number" data-target="5.0" data-suffix="★" data-decimal="true">0</span>
                 <span class="trust-label">Perfect Rating</span>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
-                <span class="trust-number">7+</span>
+                <span class="trust-number" data-target="7" data-suffix="+">0</span>
                 <span class="trust-label">Years Serving Hamilton</span>
             </div>
         </div>
@@ -334,25 +809,25 @@
 <section class="about" id="about">
     <div class="container">
         <div class="about-grid">
-            <div class="about-image-block">
-                <img class="about-img" src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=800&q=80" alt="Martin's Automotive Centre shop">
-                <div class="about-exp-badge">
+            <div class="about-image-block img-reveal anim-element">
+                <img class="about-img anim-zoom-parallax" src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=800&q=80" alt="Martin's Automotive Centre shop">
+                <div class="about-exp-badge anim-pop anim-element">
                     <span class="exp-num">5.0</span>
                     <span class="exp-txt">Perfect<br>Google Rating</span>
                 </div>
             </div>
             <div class="about-text">
-                <span class="section-label">About Martin's</span>
-                <h2>Your Go-To Spot for<br><span class="accent">Reliable Auto Repair</span></h2>
-                <p>Martin's Automotive Centre was founded in 2018 with one goal: to provide the Hamilton and Greater Toronto Area community with the best automotive repair services at a fair price.</p>
-                <p>Martin is a fully licensed automotive service technician who takes the time to explain repairs in detail without upselling unnecessary services. What you need is what we fix — nothing more, nothing less.</p>
-                <div class="about-features">
+                <span class="section-label anim-slide-left anim-element">About Martin's</span>
+                <h2 class="anim-blur-in anim-element">Your Go-To Spot for<br><span class="accent">Reliable Auto Repair</span></h2>
+                <p class="anim-fade-up anim-element">Martin's Automotive Centre was founded in 2018 with one goal: to provide the Hamilton and Greater Toronto Area community with the best automotive repair services at a fair price.</p>
+                <p class="anim-fade-up anim-element" style="transition-delay: 0.1s;">Martin is a fully licensed automotive service technician who takes the time to explain repairs in detail without upselling unnecessary services. What you need is what we fix — nothing more, nothing less.</p>
+                <div class="about-features anim-stagger anim-element">
                     <div class="feature"><div class="feature-icon">✓</div><span>Licensed Technician</span></div>
                     <div class="feature"><div class="feature-icon">✓</div><span>All Makes & Models</span></div>
                     <div class="feature"><div class="feature-icon">✓</div><span>All Work Guaranteed</span></div>
                     <div class="feature"><div class="feature-icon">✓</div><span>Fair & Honest Pricing</span></div>
                 </div>
-                <a href="#services" class="btn btn-primary">Our Services →</a>
+                <a href="#services" class="btn btn-primary anim-fade-up anim-element" style="transition-delay: 0.3s;">Our Services →</a>
             </div>
         </div>
     </div>
@@ -361,56 +836,56 @@
 <!-- SERVICES -->
 <section class="services" id="services">
     <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered anim-ready anim-element">
             <span class="section-label">What We Do</span>
             <h2>Our <span class="accent">Services</span></h2>
             <p>Complete auto repair and maintenance — done right, at a fair price.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
+        <div class="services-grid anim-stagger anim-element">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">🛢️</span></div>
                 <h3>Oil Change & Maintenance</h3>
                 <p>Regular maintenance to keep your engine running smooth and extend the life of your vehicle.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card featured">
+            <div class="service-card featured anim-tilt">
                 <div class="card-badge">Most Popular</div>
                 <div class="svc-icon-wrap"><span class="svc-icon">🔧</span></div>
                 <h3>Brake Repair</h3>
                 <p>Pads, rotors, calipers — complete brake inspection and repair to keep you stopping safely.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">⚡</span></div>
                 <h3>Engine Diagnostics</h3>
                 <p>Check engine light on? We'll find the root cause fast with advanced diagnostic tools.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">❄️</span></div>
                 <h3>A/C & Heating</h3>
                 <p>Stay comfortable through Hamilton's hot summers and cold winters with climate system repair.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">🔩</span></div>
                 <h3>Suspension & Steering</h3>
                 <p>Struts, shocks, sway bar links, alignment — for a safer, smoother ride.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">🔋</span></div>
                 <h3>Electrical Systems</h3>
                 <p>Sensors, ignition, wiring, radio — full electrical diagnostics and repair.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">🛞</span></div>
                 <h3>Tire Service</h3>
                 <p>Seasonal changeover, installation, rotation, balancing, and flat repair.</p>
                 <span class="svc-link">Learn More →</span>
             </div>
-            <div class="service-card">
+            <div class="service-card anim-tilt">
                 <div class="svc-icon-wrap"><span class="svc-icon">🛡️</span></div>
                 <h3>Safety Inspections</h3>
                 <p>Ontario safety standards inspection for buying, selling, or transferring vehicles.</p>
@@ -425,9 +900,9 @@
     <div class="container">
         <div class="why-grid">
             <div class="why-content">
-                <span class="section-label">Why Martin's</span>
-                <h2>We Don't Just Fix Cars.<br><span class="accent">We Earn Your Trust.</span></h2>
-                <div class="why-items">
+                <span class="section-label anim-slide-left anim-element">Why Martin's</span>
+                <h2 class="anim-blur-in anim-element">We Don't Just Fix Cars.<br><span class="accent">We Earn Your Trust.</span></h2>
+                <div class="why-items anim-stagger anim-element">
                     <div class="why-item">
                         <div class="why-num">01</div>
                         <div><h4>No Upselling — Ever</h4><p>We tell you what needs fixing and what can wait. You'll never pay for work you don't need.</p></div>
@@ -446,8 +921,8 @@
                     </div>
                 </div>
             </div>
-            <div class="why-img-wrap">
-                <img class="why-img" src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80" alt="Mechanic inspecting vehicle">
+            <div class="why-img-wrap img-reveal anim-element">
+                <img class="why-img anim-zoom-parallax" src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80" alt="Mechanic inspecting vehicle">
             </div>
         </div>
     </div>
@@ -456,35 +931,74 @@
 <!-- GALLERY -->
 <section class="gallery" id="gallery">
     <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered anim-ready anim-element">
             <span class="section-label">Our Work</span>
             <h2>Inside <span class="accent">The Shop</span></h2>
             <p>Quality work, clean shop, and attention to detail on every job.</p>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item">
+        <div class="gallery-grid anim-stagger anim-element">
+            <div class="gallery-item anim-scale-in">
                 <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&q=80" alt="Engine work">
                 <div class="gallery-overlay"><h4>Engine Work</h4><p>Valve cover gasket replacement</p></div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Brake service">
+            <div class="gallery-item anim-scale-in">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80" alt="Brake service">
                 <div class="gallery-overlay"><h4>Brake Service</h4><p>Rotors and pads replacement</p></div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da20?w=600&q=80" alt="Shop bay">
+            <div class="gallery-item anim-scale-in">
+                <img src="https://images.unsplash.com/photo-1603553329474-99f95f35394f?w=600&q=80" alt="Shop bay">
                 <div class="gallery-overlay"><h4>Our Shop</h4><p>541 Kenilworth Ave N</p></div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item anim-scale-in">
                 <img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=600&q=80" alt="Suspension repair">
                 <div class="gallery-overlay"><h4>Suspension</h4><p>Struts & sway bar links</p></div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item anim-scale-in">
                 <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="Vehicle inspection">
                 <div class="gallery-overlay"><h4>Safety Inspection</h4><p>Complete vehicle check</p></div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item anim-scale-in">
                 <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Finished vehicle">
                 <div class="gallery-overlay"><h4>Ready for Pickup</h4><p>Another happy customer</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BEFORE/AFTER SHOWCASE -->
+<section class="before-after" id="transformations">
+    <div class="container">
+        <div class="section-header centered anim-ready anim-element">
+            <span class="section-label">See The Difference</span>
+            <h2>Before & <span class="accent">After</span></h2>
+            <p>Drag the slider to see the quality of our repair work.</p>
+        </div>
+        <div class="ba-container">
+            <div class="anim-slide-left anim-element">
+                <div class="ba-slider anim-glow" id="baSlider1">
+                    <img class="ba-after" src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="New brake rotors">
+                    <img class="ba-before" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80" alt="Worn brake rotors">
+                    <div class="ba-handle"></div>
+                    <span class="ba-label before">Before</span>
+                    <span class="ba-label after">After</span>
+                </div>
+                <div class="ba-info">
+                    <h4>Brake Rotor Replacement</h4>
+                    <p>Worn rotors replaced with premium parts — stopping power restored</p>
+                </div>
+            </div>
+            <div class="anim-slide-right anim-element">
+                <div class="ba-slider anim-glow" id="baSlider2">
+                    <img class="ba-after" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80" alt="Clean engine bay">
+                    <img class="ba-before" src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&q=80" alt="Dirty engine bay">
+                    <div class="ba-handle"></div>
+                    <span class="ba-label before">Before</span>
+                    <span class="ba-label after">After</span>
+                </div>
+                <div class="ba-info">
+                    <h4>Engine Bay Detailing</h4>
+                    <p>Complete cleaning and inspection — looks like new</p>
+                </div>
             </div>
         </div>
     </div>
@@ -493,24 +1007,24 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials">
     <div class="container">
-        <div class="section-header centered">
+        <div class="section-header centered anim-ready anim-element">
             <span class="section-label">424+ Google Reviews</span>
             <h2>What Customers <span class="accent">Say</span></h2>
         </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
+        <div class="testimonial-grid anim-stagger anim-element">
+            <div class="testimonial-card anim-rotate-in">
                 <div class="stars">★★★★★</div>
                 <p>"Great mechanic, really knows his stuff. Brought in a 2010 Tucson with malfunctioning sensors. Martin went out of his way, spending hours to figure out what was wrong and fixed it! Very knowledgeable and honest."</p>
                 <div class="t-author"><div class="t-avatar">G</div><div><strong>Google Reviewer</strong><span>Hamilton, ON</span></div></div>
                 <div class="review-source">Via Google Reviews</div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card anim-rotate-in">
                 <div class="stars">★★★★★</div>
                 <p>"Martin and his team are polite, thorough, and honest! They have the vehicle ready when they say they will AND show you all parts replaced. Most importantly, all at a reasonable price!"</p>
                 <div class="t-author"><div class="t-avatar">G</div><div><strong>Google Reviewer</strong><span>Hamilton, ON</span></div></div>
                 <div class="review-source">Via Google Reviews</div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card anim-rotate-in">
                 <div class="stars">★★★★★</div>
                 <p>"Martin's shop is truly a hidden gem! I honestly regret only discovering such an amazing place in Hamilton today, with such professional mechanics. Very professional, clean, and quality service."</p>
                 <div class="t-author"><div class="t-avatar">G</div><div><strong>Google Reviewer</strong><span>Hamilton, ON</span></div></div>
@@ -524,44 +1038,46 @@
 <section class="contact" id="contact">
     <div class="container">
         <div class="contact-grid">
-            <div class="contact-form-wrap">
+            <div class="contact-form-wrap anim-slide-left anim-element">
                 <span class="section-label">Get In Touch</span>
                 <h2>Request a <span class="accent">Free Quote</span></h2>
                 <p>Fill out the form below and Martin will get back to you as soon as possible.</p>
-                <div id="quoteForm">
+                <form id="quoteForm" action="https://formspree.io/f/mreylyov" method="POST">
+                    <input type="hidden" name="_replyto" value="kenilsachaparawork@gmail.com">
+                    <input type="hidden" name="_subject" value="New Quote Request — Martin's Automotive Centre">
                     <div class="form-row">
-                        <div class="form-group"><label for="firstName">First Name *</label><input type="text" id="firstName" placeholder="John" required></div>
-                        <div class="form-group"><label for="lastName">Last Name *</label><input type="text" id="lastName" placeholder="Smith" required></div>
+                        <div class="form-group"><label for="firstName">First Name *</label><input type="text" id="firstName" name="first_name" placeholder="John" required></div>
+                        <div class="form-group"><label for="lastName">Last Name *</label><input type="text" id="lastName" name="last_name" placeholder="Smith" required></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="email">Email *</label><input type="email" id="email" placeholder="john@email.com" required></div>
-                        <div class="form-group"><label for="phone">Phone *</label><input type="tel" id="phone" placeholder="(905) 923-9064" required></div>
+                        <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="john@email.com" required></div>
+                        <div class="form-group"><label for="phone">Phone *</label><input type="tel" id="phone" name="phone" placeholder="(905) 923-9064" required></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="vehicle">Vehicle (Year, Make, Model)</label><input type="text" id="vehicle" placeholder="2020 Honda Civic"></div>
+                        <div class="form-group"><label for="vehicle">Vehicle (Year, Make, Model)</label><input type="text" id="vehicle" name="vehicle" placeholder="2020 Honda Civic"></div>
                         <div class="form-group">
                             <label for="service">Service Needed</label>
-                            <select id="service">
+                            <select id="service" name="service">
                                 <option value="">Select a service...</option>
-                                <option value="oil">Oil Change & Maintenance</option>
-                                <option value="brakes">Brake Repair</option>
-                                <option value="engine">Engine Diagnostics</option>
-                                <option value="ac">A/C & Heating</option>
-                                <option value="suspension">Suspension & Steering</option>
-                                <option value="electrical">Electrical Systems</option>
-                                <option value="tires">Tire Service</option>
-                                <option value="safety">Safety Inspection</option>
-                                <option value="other">Other</option>
+                                <option value="Oil Change & Maintenance">Oil Change & Maintenance</option>
+                                <option value="Brake Repair">Brake Repair</option>
+                                <option value="Engine Diagnostics">Engine Diagnostics</option>
+                                <option value="A/C & Heating">A/C & Heating</option>
+                                <option value="Suspension & Steering">Suspension & Steering</option>
+                                <option value="Electrical Systems">Electrical Systems</option>
+                                <option value="Tire Service">Tire Service</option>
+                                <option value="Safety Inspection">Safety Inspection</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group full">
                         <label for="message">Describe the Issue</label>
-                        <textarea id="message" rows="5" placeholder="Tell us what's going on with your vehicle — noises, warning lights, symptoms, etc."></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us what's going on with your vehicle — noises, warning lights, symptoms, etc."></textarea>
                     </div>
-                    <button class="btn btn-primary btn-full" onclick="submitForm()">Send Quote Request</button>
+                    <button type="submit" class="btn btn-primary btn-full">Send Quote Request</button>
                     <p class="form-note">Walk-ins welcome · Appointments recommended for faster service</p>
-                </div>
+                </form>
                 <div class="form-success" id="formSuccess">
                     <div class="success-icon">✓</div>
                     <h3>Quote Request Sent!</h3>
@@ -575,7 +1091,7 @@
                     <div class="c-detail"><span class="c-icon">📞</span><div><strong>Phone</strong><p><a href="tel:9059239064">(905) 923-9064</a></p></div></div>
                     <div class="c-detail"><span class="c-icon">🌐</span><div><strong>Facebook</strong><p><a href="https://www.facebook.com/MartinsAutomotiveCentre/" target="_blank">@MartinsAutomotiveCentre</a></p></div></div>
                 </div>
-                <div class="info-card">
+                <div class="info-card anim-fade-up anim-element" style="transition-delay: 0.1s;">
                     <h3>Business Hours</h3>
                     <div class="hours-table">
                         <div class="hours-row"><span>Monday – Friday</span><strong>7:30am – 5:30pm</strong></div>
@@ -583,7 +1099,7 @@
                         <div class="hours-row closed"><span>Sunday</span><strong>Closed</strong></div>
                     </div>
                 </div>
-                <div class="info-card dark-card">
+                <div class="info-card dark-card anim-fade-up anim-element" style="transition-delay: 0.2s;">
                     <h3>Need Help Now?</h3>
                     <p>Give Martin a call directly. Walk-ins are always welcome during business hours.</p>
                     <a href="tel:9059239064" class="btn btn-primary btn-full" style="margin-top: 1rem;">Call (905) 923-9064</a>
@@ -594,7 +1110,7 @@
 </section>
 
 <!-- MAP -->
-<section class="map-section">
+<section class="map-section anim-mask-up anim-element">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.234!2d-79.8135!3d43.2635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c99746b77edc9%3A0xbc0235201cf8ddbd!2sMartin&#39;s%20Automotive%20Centre!5e0!3m2!1sen!2sca!4v1710000000000!5m2!1sen!2sca" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>
 
@@ -602,9 +1118,9 @@
 <section class="cta-banner">
     <div class="container">
         <div class="cta-inner">
-            <h2>Ready to Get Your Car Fixed Right?</h2>
-            <p>Book with Martin today — honest service, fair prices, guaranteed work.</p>
-            <div class="cta-actions">
+            <h2 class="anim-blur-in anim-element">Ready to Get Your Car Fixed Right?</h2>
+            <p class="anim-fade-up anim-element">Book with Martin today — honest service, fair prices, guaranteed work.</p>
+            <div class="cta-actions anim-fade-up anim-element" style="transition-delay: 0.15s;">
                 <a href="#contact" class="btn btn-white">Book Now</a>
                 <a href="tel:9059239064" class="btn btn-outline-white">Call (905) 923-9064</a>
             </div>
@@ -666,15 +1182,26 @@
     </div>
 </footer>
 
+<!-- FLOATING MOBILE CTA -->
+<div class="floating-cta" id="floatingCta">
+    <div class="floating-cta-inner">
+        <a href="tel:9059239064" class="btn btn-call">📞 Call Now</a>
+        <a href="#contact" class="btn btn-quote">Get a Quote</a>
+    </div>
+</div>
+
 <script>
+// ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
 
+// ===== MOBILE MENU =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
 navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('active'); }); });
 
+// ===== ACTIVE NAV LINK =====
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
@@ -683,8 +1210,9 @@ window.addEventListener('scroll', () => {
     navAnchors.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
 });
 
+// ===== SCROLL REVEAL =====
 function revealOnScroll() {
-    document.querySelectorAll('.service-card, .testimonial-card, .why-item, .gallery-item, .info-card, .about-text, .about-image-block').forEach(el => {
+    document.querySelectorAll('.service-card, .testimonial-card, .why-item, .gallery-item, .info-card, .about-text, .about-image-block, .ba-slider').forEach(el => {
         el.classList.add('reveal');
         if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
     });
@@ -692,13 +1220,287 @@ function revealOnScroll() {
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
-function submitForm() {
-    const f = document.getElementById('firstName'), l = document.getElementById('lastName'), e = document.getElementById('email'), p = document.getElementById('phone');
-    if (!f.value || !l.value || !e.value || !p.value) { alert('Please fill in all required fields.'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value)) { alert('Please enter a valid email address.'); return; }
-    document.getElementById('quoteForm').style.display = 'none';
-    const s = document.getElementById('formSuccess'); s.style.display = 'block'; s.style.animation = 'fadeInUp 0.5s ease forwards';
+// ===== ENHANCEMENT 1: LIVE STATUS BADGE =====
+function updateShopStatus() {
+    const badge = document.getElementById('statusBadge');
+    const text = document.getElementById('statusText');
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+    const currentTime = hour + (minutes / 60);
+    
+    // Mon-Fri: 7:30am - 5:30pm (7.5 - 17.5)
+    const isWeekday = day >= 1 && day <= 5;
+    const isOpen = isWeekday && currentTime >= 7.5 && currentTime < 17.5;
+    
+    if (isOpen) {
+        badge.classList.add('open');
+        badge.classList.remove('closed');
+        const closeTime = 17.5;
+        const hoursLeft = Math.floor(closeTime - currentTime);
+        const minsLeft = Math.round((closeTime - currentTime - hoursLeft) * 60);
+        if (hoursLeft < 1) {
+            text.textContent = `Closes in ${minsLeft}m`;
+        } else {
+            text.textContent = 'Open Now';
+        }
+    } else {
+        badge.classList.add('closed');
+        badge.classList.remove('open');
+        // Calculate next open time
+        if (day === 0) { // Sunday
+            text.textContent = 'Opens Mon 7:30am';
+        } else if (day === 6) { // Saturday
+            text.textContent = 'Opens Mon 7:30am';
+        } else if (currentTime < 7.5) { // Before opening
+            text.textContent = 'Opens at 7:30am';
+        } else { // After closing
+            if (day === 5) {
+                text.textContent = 'Opens Mon 7:30am';
+            } else {
+                text.textContent = 'Opens Tomorrow 7:30am';
+            }
+        }
+    }
 }
+updateShopStatus();
+setInterval(updateShopStatus, 60000); // Update every minute
+
+// ===== ENHANCEMENT 2: ANIMATED COUNTERS =====
+function animateCounters() {
+    const counters = document.querySelectorAll('.trust-number[data-target]');
+    
+    counters.forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const isDecimal = counter.getAttribute('data-decimal') === 'true';
+        const duration = 2000;
+        const startTime = performance.now();
+        
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = target * easeOut;
+            
+            if (isDecimal) {
+                counter.textContent = current.toFixed(1) + suffix;
+            } else {
+                counter.textContent = Math.floor(current) + suffix;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            }
+        }
+        requestAnimationFrame(updateCounter);
+    });
+}
+
+// Trigger counters when hero is visible
+const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setTimeout(animateCounters, 500);
+            heroObserver.disconnect();
+        }
+    });
+}, { threshold: 0.3 });
+heroObserver.observe(document.querySelector('.hero-trust'));
+
+// ===== ENHANCEMENT 3: BEFORE/AFTER SLIDER =====
+function initBeforeAfterSliders() {
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+        const handle = slider.querySelector('.ba-handle');
+        const beforeImg = slider.querySelector('.ba-before');
+        let isDragging = false;
+        
+        function updateSlider(x) {
+            const rect = slider.getBoundingClientRect();
+            let percentage = ((x - rect.left) / rect.width) * 100;
+            percentage = Math.max(0, Math.min(100, percentage));
+            
+            handle.style.left = percentage + '%';
+            beforeImg.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        }
+        
+        function startDrag(e) {
+            isDragging = true;
+            slider.style.cursor = 'grabbing';
+        }
+        
+        function endDrag() {
+            isDragging = false;
+            slider.style.cursor = 'ew-resize';
+        }
+        
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            updateSlider(x);
+        }
+        
+        // Mouse events
+        handle.addEventListener('mousedown', startDrag);
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('mousemove', drag);
+        
+        // Touch events
+        handle.addEventListener('touchstart', startDrag);
+        document.addEventListener('touchend', endDrag);
+        document.addEventListener('touchmove', drag);
+        
+        // Click to move
+        slider.addEventListener('click', (e) => {
+            if (e.target === handle) return;
+            updateSlider(e.clientX);
+        });
+    });
+}
+initBeforeAfterSliders();
+
+// ===== ENHANCEMENT 4: FLOATING MOBILE CTA =====
+const floatingCta = document.getElementById('floatingCta');
+let lastScroll = 0;
+
+function updateFloatingCta() {
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+    const footerTop = document.querySelector('.footer').offsetTop;
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Show after scrolling past hero, hide near footer
+    const shouldShow = scrollY > heroHeight * 0.5 && (scrollY + windowHeight) < footerTop;
+    
+    if (shouldShow) {
+        floatingCta.classList.add('visible');
+    } else {
+        floatingCta.classList.remove('visible');
+    }
+    
+    lastScroll = scrollY;
+}
+window.addEventListener('scroll', updateFloatingCta);
+window.addEventListener('load', updateFloatingCta);
+
+// ===== ENHANCEMENT 5: PARALLAX EFFECTS =====
+function parallaxEffect() {
+    const scrollY = window.scrollY;
+    
+    // Hero background parallax
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+    }
+    
+    // About image subtle parallax
+    const aboutImg = document.querySelector('.about-img');
+    if (aboutImg) {
+        const aboutSection = document.querySelector('.about');
+        const aboutTop = aboutSection.offsetTop;
+        const aboutOffset = scrollY - aboutTop;
+        if (aboutOffset > -window.innerHeight && aboutOffset < aboutSection.offsetHeight) {
+            aboutImg.style.transform = `translateY(${aboutOffset * 0.08}px)`;
+        }
+    }
+    
+    // Why us image parallax
+    const whyImg = document.querySelector('.why-img');
+    if (whyImg) {
+        const whySection = document.querySelector('.why-us');
+        const whyTop = whySection.offsetTop;
+        const whyOffset = scrollY - whyTop;
+        if (whyOffset > -window.innerHeight && whyOffset < whySection.offsetHeight) {
+            whyImg.style.transform = `translateY(${whyOffset * 0.06}px)`;
+        }
+    }
+}
+window.addEventListener('scroll', () => requestAnimationFrame(parallaxEffect));
+
+// ===== APPLE-STYLE SCROLL ANIMATIONS =====
+const scrollProgress = document.getElementById('scrollProgress');
+
+// Scroll Progress Bar
+function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollTop / docHeight;
+    scrollProgress.style.transform = `scaleX(${scrollPercent})`;
+}
+window.addEventListener('scroll', updateScrollProgress);
+
+// Intersection Observer for scroll-triggered animations
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            
+            // For stagger animations, also add in-view to parent
+            if (entry.target.classList.contains('anim-stagger')) {
+                entry.target.classList.add('in-view');
+            }
+            
+            // For section headers with special animation
+            if (entry.target.classList.contains('anim-ready')) {
+                entry.target.classList.add('in-view');
+            }
+        }
+    });
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+// Observe all animation elements
+document.querySelectorAll('.anim-element, .anim-fade-up, .anim-fade-in, .anim-slide-left, .anim-slide-right, .anim-scale-in, .anim-blur-in, .anim-pop, .anim-tilt, .anim-rotate-in, .anim-mask-up, .anim-stagger, .anim-ready, .anim-glow, .anim-zoom-parallax, .img-reveal').forEach(el => {
+    animationObserver.observe(el);
+});
+
+// Smooth scroll-linked animations for more fluid feel
+let ticking = false;
+function smoothScrollAnimations() {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            // Add any continuous scroll-linked effects here
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+window.addEventListener('scroll', smoothScrollAnimations);
+
+// ===== FORM SUBMISSION =====
+const quoteForm = document.getElementById('quoteForm');
+quoteForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(quoteForm);
+    const btn = quoteForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch(quoteForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            quoteForm.style.display = 'none';
+            const s = document.getElementById('formSuccess');
+            s.style.display = 'block';
+            s.style.animation = 'fadeInUp 0.5s ease forwards';
+        } else {
+            alert('Something went wrong. Please try calling (905) 923-9064 instead.');
+            btn.textContent = 'Send Quote Request';
+            btn.disabled = false;
+        }
+    }).catch(() => {
+        alert('Something went wrong. Please try calling (905) 923-9064 instead.');
+        btn.textContent = 'Send Quote Request';
+        btn.disabled = false;
+    });
+});
 </script>
 </body>
 </html>
